@@ -33,23 +33,46 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         updateUI() //Calling a function
+        
     }
 
-    func updateUI(){
-        questions.text = questionBank[0][0]
-        
-        
-        
-        
+   @objc func updateUI(){
+       
+       questions.text = questionBank[questionNumber][0]
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear
+       
+       
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
     
-     
+        let userInput = sender.currentTitle!
+        
+        //False
+        
+        if userInput == questionBank[questionNumber][1] {
+        
+            sender.backgroundColor = UIColor.green
+            
+        }
+        else {
+            
+            sender.backgroundColor = UIColor.red
+            
         }
         
+        if questionNumber + 1 < questionBank.count {
+        
+        questionNumber += 1
         
 }
-
-
+        else {
+            questionNumber = 0
+        }
+        
+        Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+        
+}
+}
 
