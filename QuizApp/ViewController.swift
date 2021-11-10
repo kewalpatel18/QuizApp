@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     
     
   
-
     var questionNumber = 0
     
     override func viewDidLoad() {
@@ -46,10 +45,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
+        
+        //1. Check if the user input is actually the correct answer
+        //2. Change the question Number
+        
+        //SENDER
     
         let userInput = sender.currentTitle!
-        
-        //False
+
         
         if userInput == questionBank[questionNumber][1] {
         
