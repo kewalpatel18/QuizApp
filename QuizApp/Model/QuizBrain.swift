@@ -35,9 +35,9 @@ struct QuizBrain {
         
     }
     
-    func checkAnswer(_userInput : String) -> Bool{
+    func checkAnswer(_ userInput : String) -> Bool{
         
-        if _userInput == questionBank[questionNumber].answer{
+        if userInput == questionBank[questionNumber].answer{
         
         return true
         

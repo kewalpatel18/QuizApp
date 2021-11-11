@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         //SENDER
     
         let userInput = sender.currentTitle!
-        let checkAnswer = quizbrain.checkAnswer(_userInput: userInput)
+        let checkAnswer = quizbrain.checkAnswer(userInput)
         
         
         if checkAnswer {
