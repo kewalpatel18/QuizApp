@@ -12,20 +12,18 @@ class ViewController: UIViewController {
     // Outlets -> Variables |// Action -> Function
     
     @IBOutlet weak var trueButton: UIButton!
-    
     @IBOutlet weak var falseButton: UIButton!
-    
     @IBOutlet weak var questions: UILabel!
     
-    //2D Array - Two Dimensional Array
-    var questionBank = [["5 + 4 = 10", "False"],
-                        ["3 + 5 = 7", "False"],
-                        ["10 + 2 = 12", "True"],
-                        ["1 - 1 = 1", "False"]]
+//    //2D Array - Two Dimensional Array
+//    var questionBank = [["5 + 4 = 10", "False"],
+//                        ["3 + 5 = 7", "False"],
+//                        ["10 + 2 = 12", "True"],
+//                        ["1 - 1 = 1", "False"]]
+//
     
-    
-  
-    var questionNumber = 0
+   var quizbrain = QuizBrain()
+    // Creating to object to integrate Model and View Controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +35,7 @@ class ViewController: UIViewController {
 
    @objc func updateUI(){
        
-       questions.text = questionBank[questionNumber][0]
+       questions.text = quizbrain.getQuestion()
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
        
@@ -52,9 +50,10 @@ class ViewController: UIViewController {
         //SENDER
     
         let userInput = sender.currentTitle!
-
+        let checkAnswer = quizbrain.checkAnswer(_userInput: userInput)
         
-        if userInput == questionBank[questionNumber][1] {
+        
+        if checkAnswer {
         
             sender.backgroundColor = UIColor.green
             
@@ -65,14 +64,8 @@ class ViewController: UIViewController {
             
         }
         
-        if questionNumber + 1 < questionBank.count {
+        quizbrain.nextQuestion()
         
-        questionNumber += 1
-        
-}
-        else {
-            questionNumber = 0
-        }
         
         Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
         
